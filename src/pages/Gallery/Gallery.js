@@ -1,6 +1,7 @@
 import React from "react";
-import { Container, Typography, makeStyles, Box } from "@material-ui/core";
-import { CloudOutlined, ImageOutlined, AddAPhoto } from "@material-ui/icons"
+import { Container, Typography, makeStyles, Box,Button } from "@material-ui/core";
+import { CloudOutlined, ImageOutlined, AddAPhoto } from "@material-ui/icons";
+import { green } from "@material-ui/core/colors"
 
 
 const useStyles = makeStyles((theme)=>({
@@ -38,6 +39,12 @@ const useStyles = makeStyles((theme)=>({
     gallery: {
         marginBottom: "30px",
         marginTop: "30px"
+    },
+    line : {
+        width: "100%",
+        height: "3px",
+        backgroundColor: green[100],
+        marginTop: "7px"
     }
 }))
 const Gallery = () =>{
@@ -54,6 +61,8 @@ const Gallery = () =>{
                 <Typography>jpeg,pneg,gif</Typography>
             </div>
             <Typography>Add link</Typography>
+            <Button variant="contained" color="secondary">Save</Button>
+            <Box className={classes.line}></Box>
         </Container>
     )
 }

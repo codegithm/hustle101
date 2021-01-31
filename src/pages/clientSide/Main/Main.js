@@ -1,19 +1,17 @@
 import {React, useState} from 'react';
 import { Container, makeStyles, Grid, Box } from '@material-ui/core';
-import Profile from "../../components/Profile/Profile";
-import Gallery from "../Gallery/Gallery";
-import Jobs from '../../components/Work/Work';
-import Active from '../../components/Active/Active'
-import HomeComponent from '../../components/Home/Home'
-import { Home, HomeOutlined, Person,PersonOutline, Work,WorkOutline, Star, StarOutline, Timer,TimerOutlined } from "@material-ui/icons"
+import { Home, HomeOutlined, Person,PersonOutline, Search, SearchOutlined, Timer,TimerOutlined } from "@material-ui/icons"
 import { green } from '@material-ui/core/colors';
+import Profile from '../../../components/ProfileClient/Profile';
+import HomeClient from '../../../components/HomeClient/Home';
+import Active from '../../../components/ActiveClient/Active';
+import SearchComponent from '../../../components/Search/Search'
 const useStyles = makeStyles((theme)=>({
     container: {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        flexDirection: "column",
-        height: "100vh"
+        flexDirection: "column"
     },
     img: {
         marginTop: "10px",
@@ -40,11 +38,7 @@ const useStyles = makeStyles((theme)=>({
         width: "100%",
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
-    },
-    profile: {
-        position: "absolute",
-        bottom: 20
+        alignItems: "center"
     }
 }))
 
@@ -58,25 +52,13 @@ const Main = () =>{
     const profile = () =>{
         setIconColo("profile")
     }
-    const work = () =>{
-        setIconColo("work")
-    }
-    const rating = () =>{
-        setIconColo("rating")
+    const search = () =>{
+        setIconColo("search")
     }
     const clock = () =>{
         setIconColo("clock")
     }
 
-    const [toggle,setToggle ] = useState("on");
-
-    const handleToggle = () =>{
-        if(toggle === "on"){
-            setToggle(!toggle)
-        }else{
-            setToggle("on")
-        }
-    }
     return(
         <Container className ={classes.container}>
             <div className={classes.position}>
@@ -89,38 +71,31 @@ const Main = () =>{
              justify="center"
              alignItems="stretch"
              className={classes.grid}>
-                 <Grid className={classes.items} item xs={2}>
+                 <Grid className={classes.items} item xs={3}>
                      <Box onClick={home}>
                         {
                            iconColor === "home" ? <Home color="secondary"/> : <HomeOutlined />  
                         }
                      </Box>
                  </Grid>
-                 <Grid className={classes.items} item xs={2}>
+                 <Grid className={classes.items} item xs={3}>
                      <Box onClick={profile}>
                          {
                              iconColor === "profile" ? <Person color="secondary" /> : <PersonOutline />
                          }
                      </Box>
                      </Grid>
-                 <Grid className={classes.items} item xs={2}>
-                    <Box onClick={work}>
+                 <Grid className={classes.items} item xs={3}>
+                    <Box onClick={search}>
                         {
-                            iconColor === "work" ? <Work color="secondary" /> : <WorkOutline />
+                            iconColor === "search" ? <Search color="secondary" /> : <SearchOutlined />
                         }
                     </Box>
                  </Grid>
-                 <Grid className={classes.items} item xs={2}>
+                 <Grid className={classes.items} item xs={3}>
                     <Box onClick={clock}>
                         {
                             iconColor === "clock" ? <Timer color="secondary" /> : <TimerOutlined />
-                        }
-                    </Box>
-                 </Grid>
-                 <Grid className={classes.items} item xs={2}>
-                    <Box onClick={rating}>
-                        {
-                            iconColor === "rating" ? <Star color="secondary" /> : <StarOutline /> 
                         }
                     </Box>
                  </Grid>
@@ -133,40 +108,41 @@ const Main = () =>{
                 justify="center"
                 className={classes.grid}
                 style={{top:160, zIndex:2}}>
-                    <Grid xs={2}>
+                    <Grid xs={3}>
                         <Box 
                         bgcolor={iconColor === "home" ? green[500] : green[50]}  
                         className={classes.lines} ></Box>
                     </Grid>
-                    <Grid xs={2}>
+                    <Grid xs={3}>
                         <Box bgcolor={iconColor === "profile" ? green[500] : green[50]}  
                         className={classes.lines}></Box>
                     </Grid>
-                    <Grid xs={2}>
-                        <Box bgcolor={iconColor === "work" ? green[500] : green[50]}  className={classes.lines}></Box>
+                    <Grid xs={3}>
+                        <Box bgcolor={iconColor === "search" ? green[500] : green[50]}  className={classes.lines}></Box>
                     </Grid>
-                    <Grid xs={2}>
+                    <Grid xs={3}>
                         <Box bgcolor={iconColor === "clock" ? green[500] : green[50]}  className={classes.lines}></Box>
-                    </Grid>
-                    <Grid xs={2}>
-                        <Box bgcolor={iconColor === "rating" ? green[500] : green[50]}  className={classes.lines}></Box>
                     </Grid>
 
             </Grid>
             </div>
-           {
-               iconColor === "home" ? 
-               <HomeComponent /> : ''
-           }
-           {
-               iconColor === "profile" ?
-               <Profile className={classes.profile} toggleState={toggle} toggle={handleToggle} name="John Doe" number="0747778776" /> : ''
-           }
-            {
-                iconColor === "work" ? <Jobs title="Frontend dev" price="R3400" time="4hrs" description="I need a Frontend web developer to work frontend work with our developers" /> : ""
-            }{
-                iconColor === "clock" ? <Active name="Frontend dev" price="R3400" time="4hrs" /> : ""
-            }
+                {
+                    iconColor === "home" ? <HomeClient /> : ""
+                }
+                {
+                    iconColor === "profile" ? <Profile name="Ntando Xakaza" number="0814106872" email="xakazantando@gmail.comm" /> : ""
+                }
+                {
+                    iconColor === "clock" ? <Active 
+                    name="Frontend dev"
+                    title="Native"
+                    price="R1500"
+                    time="2days"
+                    status="pending"/> : ""
+                }
+                {
+                    iconColor === "search" ? <SearchComponent /> : ""
+                }
         </Container>
     )
 }

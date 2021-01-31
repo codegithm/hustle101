@@ -57,11 +57,11 @@ const Signup = () =>{
                 <TextField className={classes.field} id="gender" label="Gender" color="secondary" variant="outlined" />
                 <Select onChange={changeTitle} value={title} displayEmpty className={classes.field} color="secondary">
                     <MenuItem value="" disabled>Select Title</MenuItem>
-                    <MenuItem value={1}>Full stack developer</MenuItem>
-                    <MenuItem value={2}>Frontend developer</MenuItem>
-                    <MenuItem value={3}>Backend developer</MenuItem>
-                    <MenuItem value={4}>Game developer</MenuItem>
-                    <MenuItem value={5}>Native developer</MenuItem>
+                    <MenuItem value={"Full stack developer"}>Full stack developer</MenuItem>
+                    <MenuItem value={"Frontend developer"}>Frontend developer</MenuItem>
+                    <MenuItem value={"Backend developer"}>Backend developer</MenuItem>
+                    <MenuItem value={"Game developer"}>Game developer</MenuItem>
+                    <MenuItem value={"Native developer"}>Native developer</MenuItem>
                 </Select>
                 <Button variant="contained" className={classes.field} color='secondary'>Save</Button>
             </FormControl>

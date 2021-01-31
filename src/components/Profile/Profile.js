@@ -10,7 +10,6 @@ const useStyles = makeStyles((theme)=>({
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
-      
     },
     badge: {
         position: "relative",
@@ -44,9 +43,7 @@ const Profile = (props) =>{
     const toggle = props.toggleState
     return(
         <Container className = {classes.container}>
-            <Typography variant="h3">
-                Profile
-            </Typography>
+           
             <Avatar type="circle"/>
             <Badge className={classes.badge} badgeContent=" " overlap="circle" anchorOrigin= {{vertical: "bottom", horizontal: "right"}}
              color={toggle === "on" ? "secondary" : "primary"} >
