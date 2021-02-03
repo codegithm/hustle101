@@ -1,9 +1,10 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import { Container, makeStyles, Badge, Typography, Box, Button } from '@material-ui/core';
 import Avatar from "../../components/Avatar/Avatar";
 import { green, red } from "@material-ui/core/colors"
 import { ToggleOn, ToggleOff, ImageOutlined } from "@material-ui/icons"
-
+import { ProfileContext} from '../Context/ProfileContext/ProfileContext'
+import { Link } from 'react-router-dom';
 const useStyles = makeStyles((theme)=>({
     container: {
         display: "flex",
@@ -39,6 +40,7 @@ const useStyles = makeStyles((theme)=>({
 }))
 
 const Profile = (props) =>{
+    const [profile, setProfile] = useContext(ProfileContext);
     const classes = useStyles();
     const toggle = props.toggleState
     return(
@@ -49,35 +51,51 @@ const Profile = (props) =>{
              color={toggle === "on" ? "secondary" : "primary"} >
             </Badge>
             <Typography variant="h4">
-                {props.name}
+                {profile.name}
             </Typography>
             <Typography variant="h7">
-                {props.number}
+                {profile.number}
+            </Typography>
+            <Typography variant="h7">
+                {profile.idNo}
+            </Typography>
+            <Typography variant="h7">
+                {profile.location}
+            </Typography>
+            <Typography variant="h7">
+                {profile.gender}
+            </Typography>
+            <Typography variant="h7">
+                {profile.profession}
             </Typography>
             <Box 
             style={{
                 backgroundColor : toggle === "on" ? green[100] : red[100]
             }}
-            className={classes.available} 
-            onClick={props.toggle}>
+            className={classes.available} >
                 <Box className={classes.sets}>
                     {
                         toggle === "on" ?  <Typography>Available</Typography> :  <Typography>Not Available</Typography>
                     }
                     {
-                        toggle === "on" ?  < ToggleOn style={{color:"green"}} /> :  < ToggleOff style={{color:"red"}} />
+                        toggle === "on" ?  < ToggleOn onClick={props.toggle} style={{color:"green"}} /> :  < ToggleOff onClick={props.toggle} style={{color:"red"}} />
                     }
                    
                 </Box>
 
                 <Box className={classes.sets}>
                     <Typography >Gallery</Typography>
-                    <ImageOutlined />
+                    <Link to='/gallery/freelancer'>
+                        <ImageOutlined />
+                    </Link>
                 </Box>
             </Box>
+            <Link to="/freelance/signp">
             <Button className={classes.btn} variant="contained" color="secondary">Edit profile</Button>
+            </Link>
         </Container>
     )
 }
+
 
 export default Profile

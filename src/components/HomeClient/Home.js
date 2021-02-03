@@ -42,7 +42,7 @@ const useStyles = makeStyles({
         justifyContent: "center",
     }
 })
-const Home = () =>{
+const Home = (props) =>{
     const classes = useStyles()
     return(
         <Container>
@@ -224,7 +224,7 @@ const Home = () =>{
                 <path d="M142.429 195.852L140.549 202.301L137.178 203.241L138.14 195.873L142.429 195.852Z" fill="#E4897B"/>
             </svg>
 
-                <Button className={classes.btn} variant="contained" color="secondary">Next</Button>
+                <Button onClick={props.next} className={classes.btn} variant="contained" color="secondary">Next</Button>
             </Box>
         </Container>
     )

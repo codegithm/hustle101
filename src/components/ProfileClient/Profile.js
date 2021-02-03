@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Container, makeStyles, Typography, Button } from '@material-ui/core';
 import Avatar from "../../components/Avatar/Avatar";
-import { green} from "@material-ui/core/colors"
+import { green} from "@material-ui/core/colors";
+import { ClientContext } from '../../components/Context/ClientContext/ClientContex';
+import { ClientProvider } from '../../components/Context/ClientContext/ClientContex';
 
 
 const useStyles = makeStyles((theme)=>({
@@ -40,22 +42,30 @@ const useStyles = makeStyles((theme)=>({
 }))
 
 const Profile = (props) =>{
+    const [client,setClient] = useContext(ClientContext);
     const classes = useStyles();
     return(
         <Container className = {classes.container}>
-            <Avatar type="circle"/>
+            <Avatar variant="circular"/>
             <Typography variant="h4">
-                {props.name}
+                {client.name}
             </Typography>
             <Typography variant="h7">
-                {props.number}
+                {client.cellphone}
             </Typography>
             <Typography variant="h7">
-                {props.email}
+                {client.email}
             </Typography>
             <Button className={classes.btn} variant="contained" color="secondary">Edit profile</Button>
         </Container>
     )
 }
 
-export default Profile
+const ProfileConst = () =>{
+    return(
+        <ClientProvider>
+            <Profile/>
+        </ClientProvider>
+    )
+}
+export default ProfileConst

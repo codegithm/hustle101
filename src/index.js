@@ -4,14 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import theme from './theme';
-import { ThemeProvider } from '@material-ui/core'
+import { ThemeProvider } from '@material-ui/core';
+import { ProfileProvider } from './components/Context/ProfileContext/ProfileContext';
+import { ClientProvider } from './components/Context/ClientContext/ClientContex';
 
 ReactDOM.render(
-  <React.StrictMode>
     <ThemeProvider theme={theme}>
-    <App />
-    </ThemeProvider>
-  </React.StrictMode>,
+      <ProfileProvider>
+        <App />
+      </ProfileProvider>
+    </ThemeProvider>,
   document.getElementById('root')
 );
 

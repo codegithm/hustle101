@@ -7,13 +7,14 @@ import Active from '../../components/Active/Active'
 import HomeComponent from '../../components/Home/Home'
 import { Home, HomeOutlined, Person,PersonOutline, Work,WorkOutline, Star, StarOutline, Timer,TimerOutlined } from "@material-ui/icons"
 import { green } from '@material-ui/core/colors';
+import { ProfileProvider } from '../../components/Context/ProfileContext/ProfileContext'
 const useStyles = makeStyles((theme)=>({
     container: {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
-        height: "100vh"
+        height: "auto",
     },
     img: {
         marginTop: "10px",
@@ -28,6 +29,7 @@ const useStyles = makeStyles((theme)=>({
     },
     grid: {
         width: "100%",
+        zIndex: 5
     },
     lines: {
         borderSytle: "solid",
@@ -36,11 +38,13 @@ const useStyles = makeStyles((theme)=>({
     },
     position : {
         position: "fixed",
-        top: "20px",
+        top: "0px",
         width: "100%",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        backgroundColor: "#fff",
+        zIndex: 4
     },
     profile: {
         position: "absolute",
@@ -133,22 +137,22 @@ const Main = () =>{
                 justify="center"
                 className={classes.grid}
                 style={{top:160, zIndex:2}}>
-                    <Grid xs={2}>
+                    <Grid item xs={2}>
                         <Box 
                         bgcolor={iconColor === "home" ? green[500] : green[50]}  
                         className={classes.lines} ></Box>
                     </Grid>
-                    <Grid xs={2}>
+                    <Grid item xs={2}>
                         <Box bgcolor={iconColor === "profile" ? green[500] : green[50]}  
                         className={classes.lines}></Box>
                     </Grid>
-                    <Grid xs={2}>
+                    <Grid item xs={2}>
                         <Box bgcolor={iconColor === "work" ? green[500] : green[50]}  className={classes.lines}></Box>
                     </Grid>
-                    <Grid xs={2}>
+                    <Grid item xs={2}>
                         <Box bgcolor={iconColor === "clock" ? green[500] : green[50]}  className={classes.lines}></Box>
                     </Grid>
-                    <Grid xs={2}>
+                    <Grid item xs={2}>
                         <Box bgcolor={iconColor === "rating" ? green[500] : green[50]}  className={classes.lines}></Box>
                     </Grid>
 
@@ -160,7 +164,10 @@ const Main = () =>{
            }
            {
                iconColor === "profile" ?
-               <Profile className={classes.profile} toggleState={toggle} toggle={handleToggle} name="John Doe" number="0747778776" /> : ''
+               
+                    <Profile className={classes.profile} toggleState={toggle} toggle={handleToggle} name="John Doe" number="0747778776" />
+              
+                : ''
            }
             {
                 iconColor === "work" ? <Jobs title="Frontend dev" price="R3400" time="4hrs" description="I need a Frontend web developer to work frontend work with our developers" /> : ""

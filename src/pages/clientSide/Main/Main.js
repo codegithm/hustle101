@@ -5,7 +5,8 @@ import { green } from '@material-ui/core/colors';
 import Profile from '../../../components/ProfileClient/Profile';
 import HomeClient from '../../../components/HomeClient/Home';
 import Active from '../../../components/ActiveClient/Active';
-import SearchComponent from '../../../components/Search/Search'
+import SearchComponent from '../../../components/Search/Search';
+import { ClientProvider } from '../../../components/Context/ClientContext/ClientContex';
 const useStyles = makeStyles((theme)=>({
     container: {
         display: "flex",
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme)=>({
     },
     grid: {
         width: "100%",
+        zIndex: 5
     },
     lines: {
         borderSytle: "solid",
@@ -38,7 +40,8 @@ const useStyles = makeStyles((theme)=>({
         width: "100%",
         display: "flex",
         flexDirection: "column",
-        alignItems: "center"
+        alignItems: "center",
+        zIndex: 4
     }
 }))
 
@@ -108,29 +111,33 @@ const Main = () =>{
                 justify="center"
                 className={classes.grid}
                 style={{top:160, zIndex:2}}>
-                    <Grid xs={3}>
+                    <Grid item xs={3}>
                         <Box 
                         bgcolor={iconColor === "home" ? green[500] : green[50]}  
                         className={classes.lines} ></Box>
                     </Grid>
-                    <Grid xs={3}>
+                    <Grid item xs={3}>
                         <Box bgcolor={iconColor === "profile" ? green[500] : green[50]}  
                         className={classes.lines}></Box>
                     </Grid>
-                    <Grid xs={3}>
+                    <Grid item xs={3}>
                         <Box bgcolor={iconColor === "search" ? green[500] : green[50]}  className={classes.lines}></Box>
                     </Grid>
-                    <Grid xs={3}>
+                    <Grid item xs={3}>
                         <Box bgcolor={iconColor === "clock" ? green[500] : green[50]}  className={classes.lines}></Box>
                     </Grid>
 
             </Grid>
             </div>
                 {
-                    iconColor === "home" ? <HomeClient /> : ""
+                    iconColor === "home" ? <HomeClient next={profile} /> : ""
                 }
                 {
-                    iconColor === "profile" ? <Profile name="Ntando Xakaza" number="0814106872" email="xakazantando@gmail.comm" /> : ""
+                    iconColor === "profile" ? 
+                    <ClientProvider>
+                        <Profile name="Ntando Xakaza" number="0814106872" email="xakazantando@gmail.comm" />
+                    </ClientProvider>
+                     : ""
                 }
                 {
                     iconColor === "clock" ? <Active 

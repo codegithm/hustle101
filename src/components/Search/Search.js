@@ -1,11 +1,11 @@
 import React from 'react';
-import { Container, FormControl, Select, MenuItem, Typography, makeStyles, Button } from '@material-ui/core'
+import { Container, FormControl, Select, MenuItem, Typography, makeStyles, Button } from '@material-ui/core';
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles((theme)=>({
     heading: {
-        fontSize: "30px",
+        fontSize: "20px",
         fontWeight: "bold",
-        position: "relative",
     },
     field: {
         marginTop: "10px",
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme)=>({
         justifyContent: "center",
         flexDirection: "column",
         position: "absolute",
-        top: 0
+        top: 180
     },
     badge : {
         margin: theme.spacing(0)
@@ -35,21 +35,23 @@ const Search = () =>{
 
     const classes = useStyles();
     return(
-        <Container>
-            <Typography>
+        <Container className={classes.container}>
+            <Typography className={classes.heading} variant="h1">
                 Dig in!
                 What kind of a freelancer dev  are you looking for today?
             </Typography>
             <FormControl>
             <Select onChange={changeTitle} value={title} displayEmpty className={classes.field} color="secondary">
                     <MenuItem value="" disabled>Select Title</MenuItem>
-                    <MenuItem value={"Full stack developer"}>Full stack developer</MenuItem>
-                    <MenuItem value={"Frontend developer"}>Frontend developer</MenuItem>
-                    <MenuItem value={"Backend developer"}>Backend developer</MenuItem>
-                    <MenuItem value={"Game developer"}>Game developer</MenuItem>
-                    <MenuItem value={"Native developer"}>Native developer</MenuItem>
+                    <MenuItem value={"Full stack dev"}>Full stack dev</MenuItem>
+                    <MenuItem value={"Frontend dev"}>Frontend dev</MenuItem>
+                    <MenuItem value={"Backend dev"}>Backend dev</MenuItem>
+                    <MenuItem value={"Game dev"}>Game dev</MenuItem>
+                    <MenuItem value={"Native dev"}>Native dev</MenuItem>
                 </Select>
+                <Link to='/search'>
                 <Button variant="contained" className={classes.field} color='secondary'>Search</Button>
+                </Link>
             </FormControl>
         </Container>
     )
