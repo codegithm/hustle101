@@ -6,6 +6,7 @@ import Avatar from '../../components/Avatar/Avatar';
 import { Person, AddAPhoto } from '@material-ui/icons';
 import { ProfileContext } from '../../components/Context/ProfileContext/ProfileContext';
 import { Link } from 'react-router-dom';
+import axios from 'axios'
 
 
 const useStyles = makeStyles((theme)=>({
@@ -40,7 +41,10 @@ const Signup = () =>{
     const [ idNo, setIdNo ] = React.useState("");
     const [ number, setNumber ] = React.useState("");
     const [ gender, setGender ] = React.useState("");
-    const [ location, setLocation ] = React.useState("");
+    const [ city, setCity ] = React.useState("");
+    const [ country, setCountry ] = React.useState("");
+    const [ password, setPassword ] = React.useState("");
+    const [ email, setEmail ] = React.useState("");
     const [profile, setProfile] = useContext(ProfileContext);
 
     const changeTitle = (e) =>{
@@ -59,8 +63,11 @@ const Signup = () =>{
     const changeIdNumber = (e) =>{
         setIdNo(e.target.value)
     }
-    const changeLocation = (e) =>{
-        setLocation(e.target.value)
+    const changeCity = (e) =>{
+        setCity(e.target.value)
+    }
+    const changeCountry = (e) =>{
+        setCountry(e.target.value)
     }
     const changeImage = (e) =>{
         setProfile(e.target.value)
@@ -68,17 +75,33 @@ const Signup = () =>{
     const changeGender = (e) =>{
         setGender(e.target.value)
     }
+    const changeEmail = (e) =>{
+        setEmail(e.target.value)
+    }
+    const changePassword = (e) =>{
+        setPassword(e.target.value)
+    }
 
     const updateProfile = (e) =>{
-        setProfile({name: name,
-                surname: surname,
-                number: number,
-                idNo: idNo,
-                location: location,
-                gender: gender,
-                profession: profession})
-
-                console.log(profile)
+        const user = {
+            name: name,
+            surname: surname,
+            cellnumber: number,
+            gender: gender,
+            email: email,
+            password: password,
+            profession:profession,
+            idnumber: idNo,
+            picture:{},
+            city: city,
+            country: country
+        }
+        e.preventDefault();
+        axios.post('http://localhost:5000/users/register', { user })
+        .then(res =>{
+            console.log(res)
+            console.log(res.data)
+        })
     }
     const classes = useStyles();
     return(
@@ -97,7 +120,8 @@ const Signup = () =>{
                 <TextField onChange={changeSurname} className={classes.field} id="surname" label="Surname" color="secondary" variant="outlined" />
                 <TextField onChange={changeNumber} className={classes.field} id="cellphone" label="Cellphone" color="secondary" variant="outlined" />
                 <TextField onChange={changeIdNumber} className={classes.field} id="idnumber" label="ID Number" color="secondary" variant="outlined" />
-                <TextField onChange={changeLocation} className={classes.field} id="location" label="Location" color="secondary" variant="outlined" />
+                <TextField onChange={changeCity} className={classes.field} id="city" label="City" color="secondary" variant="outlined" />
+                 <TextField onChange={changeCountry} className={classes.field} id="Country" label="Country" color="secondary" variant="outlined" />
                 <TextField onChange={changeGender} className={classes.field} id="gender" label="Gender" color="secondary" variant="outlined" />
                 <Select onChange={changeTitle} value={title} displayEmpty className={classes.field} color="secondary">
                     <MenuItem value="" disabled>Select Title</MenuItem>
@@ -107,6 +131,8 @@ const Signup = () =>{
                     <MenuItem value={"Game dev"}>Game developer</MenuItem>
                     <MenuItem value={"Native dev"}>Native developer</MenuItem>
                 </Select>
+                 <TextField onChange={changeEmail} className={classes.field} id="email" label="Email" color="secondary" variant="outlined" />
+                  <TextField onChange={changePassword} className={classes.field} id="password" label="Password" color="secondary" variant="outlined" />
                 <Link to='/main/freelancer'>
                     <Button onClick={updateProfile} variant="contained" className={classes.field} color='secondary'>Save</Button>
                 </Link>
