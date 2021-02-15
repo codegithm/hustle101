@@ -1,25 +1,22 @@
-import './App.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Main from './pages/Main/Main';
-import Page1 from './pages/Page1/page1';
-import Page2 from './pages/Page2/FreelancerSignup';
-import Gallery from './pages/Gallery/Gallery';
-
-
-
-
+import "./App.css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Main from "./pages/Main/Main";
+import Page2 from "./pages/Page2/FreelancerSignup";
+import Gallery from "./pages/Gallery/Gallery";
+import Login from "./pages/Login/Login";
+import Hustle from "./pages/Hustle/Hustle";
 
 function App() {
-
   return (
     <Router>
       <div className="App">
-          <Switch>
-            <Route path="/" exact component={Page1} />
-            <Route path='/gallery/freelancer' exact component={Gallery} />
-            <Route path="/freelance/signp" exact component={Page2} />
-            <Route path='/main/freelancer' exact component={Main} />
-          </Switch>
+        <Switch>
+          <Route path="/" exact component={Hustle} />
+          <Route path="/gallery/freelancer" exact component={Gallery} />
+          <Route path="/freelance/signp" exact component={Page2} />
+          <Route path="/main/freelancer" exact component={Main} />
+          <Route path="/login" exact component={Login} />
+        </Switch>
       </div>
     </Router>
   );
