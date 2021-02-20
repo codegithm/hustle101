@@ -2,7 +2,6 @@ import { React, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Container, makeStyles, Grid, Box } from "@material-ui/core";
 import Profile from "../../components/Profile/Profile";
-import Gallery from "../Gallery/Gallery";
 import Jobs from "../../components/WorkContainer/Work";
 import Active from "../../components/ActiveContainer/Active";
 import HomeComponent from "../../components/Home/Home";
@@ -20,7 +19,6 @@ import {
   TimerOutlined,
 } from "@material-ui/icons";
 import { green } from "@material-ui/core/colors";
-import { ProfileProvider } from "../../components/Context/ProfileContext/ProfileContext";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -74,7 +72,8 @@ const Main = () => {
   const data = JSON.parse(localStorage.getItem("user"));
   let id = "";
   if (data != null) {
-    id = data.data._id;
+    id = data.data.data._id;
+    localStorage.setItem("user_id", id);
   }
   console.log(id);
 

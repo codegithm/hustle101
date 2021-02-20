@@ -40,7 +40,7 @@ export default function Login() {
   const classes = useStyles();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [wrong, setWrong] = useState();
+  const [wrong, setWrong] = useState(" ");
 
   const changePassword = (e) => {
     setPassword(e.target.value);
@@ -93,7 +93,7 @@ export default function Login() {
       </Box>
 
       <FormControl>
-        <p>{wrong}</p>
+      {wrong === "" ? " " : "Incorrect credentials"}
         <TextField
           onChange={changeEmail}
           className={classes.form}

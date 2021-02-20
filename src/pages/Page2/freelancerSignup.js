@@ -9,7 +9,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Select, MenuItem, Button, Badge } from "@material-ui/core";
 import Avatar from "../../components/Avatar/Avatar";
 import { Person, AddAPhoto } from "@material-ui/icons";
-import { ProfileContext } from "../../components/Context/ProfileContext/ProfileContext";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
@@ -49,7 +48,7 @@ const Signup = () => {
   const [country, setCountry] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [email, setEmail] = React.useState("");
-  const [profile, setProfile] = useContext(ProfileContext);
+  const [profile, setProfile] = React.useState("")
   const [lable, setLable] = React.useState("");
   const changeTitle = (e) => {
     selectTitle(e.target.value);

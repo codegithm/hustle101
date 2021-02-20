@@ -5,6 +5,7 @@ import Page2 from "./pages/Page2/FreelancerSignup";
 import Gallery from "./pages/Gallery/Gallery";
 import Login from "./pages/Login/Login";
 import Hustle from "./pages/Hustle/Hustle";
+import Upload from "./pages/Upload/Upload";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/freelance/signp" exact component={Page2} />
           <Route path="/main/freelancer" exact component={Main} />
           <Route path="/login" exact component={Login} />
+          <Route path="/upload" exact component={Upload} />
         </Switch>
       </div>
     </Router>
